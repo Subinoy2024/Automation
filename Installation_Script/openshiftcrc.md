@@ -262,3 +262,8 @@ sudo semanage port -m -t http_port_t -p tcp 6443
 sudo ss -ltnp | egrep ':80|:443|:6443'
 sudo systemctl status haproxy --no-pager -l
 sudo journalctl -xeu haproxy.service --no-pager | tail -50
+
+sudo firewall-cmd --add-service=http --permanent
+sudo firewall-cmd --add-service=https --permanent
+sudo firewall-cmd --add-service=kube-apiserver --permanent
+sudo firewall-cmd --reload
